@@ -31,11 +31,13 @@ CREATE TABLE Alunos (
     email VARCHAR(255) NOT NULL,
     data_nascimento DATE,
     genero VARCHAR(1),
-    UNIQUE(email)
+    escola_id INT,
+    UNIQUE(email),
+    FOREIGN KEY (escola_id) REFERENCES Escolas(id)
 );
 
 CREATE TABLE Alunos_Turmas (
-    matricula INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     aluno_id INT,
     turma_id INT,
     FOREIGN KEY (aluno_id) REFERENCES Alunos(id),
