@@ -1213,3 +1213,8 @@ a:hover {
   font-size: 13px;
   color: #012970;
 }
+
+.required:after {
+  content:" *"; 
+  color: red;
+}
