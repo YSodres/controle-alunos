@@ -20,6 +20,3 @@ $capsule->addConnection([
 ]);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
-
-var_dump($capsule);
-exit();
