@@ -1,6 +1,9 @@
 <?php
 
-require_once(__DIR__ . "/vendor/autoload.php");
+namespace ControleAlunos\conexaoDB;
+
+use Dotenv;
+use PDO;
 
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
 $dotenv->safeLoad();
