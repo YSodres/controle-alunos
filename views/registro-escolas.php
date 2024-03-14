@@ -1,7 +1,21 @@
 <?php
 
-use ControleAlunos\conexaoDB;
-use ControleAlunos\models\Aluno;
+use ControleAlunos\models\Escola;
+use ControleAlunos\repositories\EscolasRepository;
+
+require_once(__DIR__ . "/../conexao-db.php");
+
+if (isset($_POST["confirmar"])) {
+    $escolasRepository = new EscolasRepository($pdo);
+
+    $escola = new Escola();
+    $escola->nome = $_POST["nome"];
+    $escola->endereco = $_POST["endereco"];
+    $escola->data_cadastro = $_POST["data_cadastro"];
+    $escola->situacao = $_POST["situacao"];
+
+    $escolasRepository->salvar($escola);
+}
 
 ?>
 
@@ -40,13 +54,13 @@ use ControleAlunos\models\Aluno;
                     </div>
 
                     <div class="mb-2">
-                        <label for="data-cadastro" class="required form-label fw-bold">Data de cadastro:</label>
-                        <input type="date" class="form-control" id="data-cadastro" name="data-cadastro" required>
+                        <label for="data_cadastro" class="required form-label fw-bold">Data de cadastro:</label>
+                        <input type="date" class="form-control" id="data_cadastro" name="data_cadastro" required>
                     </div>
 
                     <div class="mb-2">
-                        <label for="status" class="form-label fw-bold">Situação:</label>
-                        <select class="form-select" id="status" name="status" required>
+                        <label for="situacao" class="form-label fw-bold">Situação:</label>
+                        <select class="form-select" id="situacao" name="situacao" required>
                             <option value="1">Ativo</option>
                             <option value="2">Inativo</option>
                         </select>

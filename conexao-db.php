@@ -1,9 +1,6 @@
 <?php
 
-namespace ControleAlunos;
-
-use Dotenv;
-use PDO;
+require_once("vendor/autoload.php");
 
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
 $dotenv->safeLoad();
