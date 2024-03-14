@@ -1,3 +1,10 @@
+<?php
+
+use ControleAlunos\conexaoDB;
+use ControleAlunos\models\Aluno;
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 

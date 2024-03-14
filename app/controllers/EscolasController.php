@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleAlunos\controllers\EscolasController;
+namespace ControleAlunos\controllers;
 
 class EscolasController
 {

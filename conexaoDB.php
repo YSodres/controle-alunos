@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleAlunos\conexaoDB;
+namespace ControleAlunos;
 
 use Dotenv;
 use PDO;

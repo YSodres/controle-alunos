@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleAlunos\controllers\AlunosController;
+namespace ControleAlunos\controllers;
 
 class AlunosController
 {
