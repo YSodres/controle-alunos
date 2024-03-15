@@ -10,8 +10,8 @@ CREATE TABLE Escolas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     endereco VARCHAR(255) NOT NULL,
-    data_cadastro DATE NOT NULL,
-    situacao VARCHAR(20) NOT NULL
+    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status INT NOT NULL
 );
 
 CREATE TABLE Turmas (

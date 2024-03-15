@@ -11,10 +11,11 @@ if (isset($_POST["confirmar"])) {
     $escola = new Escola();
     $escola->nome = $_POST["nome"];
     $escola->endereco = $_POST["endereco"];
-    $escola->data_cadastro = $_POST["data_cadastro"];
     $escola->situacao = $_POST["situacao"];
 
     $escolasRepository->salvar($escola);
+
+    header("Location: listagem-escolas.php");
 }
 
 ?>
@@ -51,11 +52,6 @@ if (isset($_POST["confirmar"])) {
                     <div class="mb-2">
                         <label for="endereco" class="form-label fw-bold">Endereço:</label>
                         <input type="text" class="form-control" id="endereco" name="endereco" >
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="data_cadastro" class="required form-label fw-bold">Data de cadastro:</label>
-                        <input type="date" class="form-control" id="data_cadastro" name="data_cadastro" required>
                     </div>
 
                     <div class="mb-2">
