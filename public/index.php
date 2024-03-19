@@ -7,6 +7,9 @@ use ControleAlunos\controllers\RegistroEscolasController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . "/../");
+$dotenv->safeLoad();
+
 $routes = [
     '' => RegistroEscolasController::class,
     'registrar-escola' => RegistroEscolasController::class
