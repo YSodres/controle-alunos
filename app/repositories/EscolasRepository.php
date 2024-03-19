@@ -2,18 +2,14 @@
 
 namespace ControleAlunos\repositories;
 
-use PDO;
 use ControleAlunos\models\Escola;
-class EscolasRepository
+use ControleAlunos\repositories\AbstractRepository;
+
+class EscolasRepository extends AbstractRepository
 {
-    private PDO $pdo;
+    private $model = Escola::class;
 
-    public function __construct(PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
-
-    public function salvar(Escola $escola)
+    public function store(Escola $escola)
     {
         $sql = "INSERT INTO escolas (nome, endereco, status) 
                 VALUES (:nome, :endereco, :situacao)";

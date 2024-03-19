@@ -1,25 +1,3 @@
-<?php
-
-use ControleAlunos\models\Escola;
-use ControleAlunos\repositories\EscolasRepository;
-
-require_once(__DIR__ . "/../conexao-db.php");
-
-if (isset($_POST["confirmar"])) {
-    $escolasRepository = new EscolasRepository($pdo);
-
-    $escola = new Escola();
-    $escola->nome = $_POST["nome"];
-    $escola->endereco = $_POST["endereco"];
-    $escola->situacao = $_POST["situacao"];
-
-    $escolasRepository->salvar($escola);
-
-    header("Location: listagem-escolas.php");
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
