@@ -19,11 +19,12 @@ class ListagemEscolasController extends AbstractController
 
     public function get()
     {
+        $escolas = $this->escolasRepository->all();
         require_once __DIR__ . "/../../views/listagem-escolas.php";
     }
 
     public function post()
     {
-        
+        http_response_code(404);
     }
 }

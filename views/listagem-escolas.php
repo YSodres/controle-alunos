@@ -31,13 +31,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">id</th>
-                        <td>nome</td>
-                        <td>endereco</td>
-                        <td>dataCadastro</td>
-                        <td>Situacao</td>
-                    </tr>
+                    <?php foreach ($escolas as $escola): ?>
+                        <tr>
+                            <th scope="row"><?= $escola->id; ?></th>
+                            <td><?= $escola->nome; ?></td>
+                            <td><?= $escola->endereco; ?></td>
+                            <td><?= date('d/m/Y', strtotime($escola->data_cadastro)); ?></td>
+                            <td><?= ($escola->status == 1) ? "Ativo" : "Inativo"; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
                 </table>
         </section>
