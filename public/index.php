@@ -5,6 +5,8 @@ declare(strict_types=1);
 use ControleAlunos\Router;
 use ControleAlunos\controllers\RegistroEscolasController;
 use ControleAlunos\controllers\ListagemEscolasController;
+use ControleAlunos\controllers\AtualizacaoEscolasController;
+
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -14,7 +16,8 @@ $dotenv->safeLoad();
 $routes = [
     '' => ListagemEscolasController::class,
     'registrar-escola' => RegistroEscolasController::class,
-    'listagem-escolas' => ListagemEscolasController::class
+    'listagem-escolas' => ListagemEscolasController::class,
+    'atualizar-escola' => AtualizacaoEscolasController::class
 ];
 
 $request = $_SERVER['REQUEST_URI'];

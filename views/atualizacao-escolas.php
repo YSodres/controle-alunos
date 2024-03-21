@@ -16,7 +16,49 @@
         ?>
     </header>
 
-    <main></main>
+    <main id="main" class="main">
+        <section class="container mt-4">
+            <h1 class="text-center mb-4 fw-bold">Registro de Escolas</h1>
+
+            <div class="d-flex .flex-colum">
+                <form method="post">
+                    <div>
+                        <label for="escola-id" class="form-label fw-bold">Selecione uma Escola:</label>
+                        <select class="form-select" name="escola-id" id="escola-id" required>
+                            <option value="" selected disabled>-</option>
+                            <?php foreach ($escolas as $escola): ?>
+                                <option value="<?= $escola->id ?>" <?= ($escola->id == $escolaId) ? 'selected' : '' ?>>
+                                    <?= $escola->nome ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="nome" class="required form-label fw-bold">Nome:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" value="<?= $escola ? $escola->nome : ''; ?>" required>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="endereco" class="form-label fw-bold">Endereço:</label>
+                        <input type="text" class="form-control" id="endereco" name="endereco" value="<?= $escola ? $escola->endereco : ''; ?>" >
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="situacao" class="form-label fw-bold">Situação:</label>
+                        <select class="form-select" id="situacao" name="situacao" disabled>
+                            <option value="1" <?= ($escola && $escola->situacao == '1') ? 'selected' : ''; ?>>Ativo</option>
+                            <option value="2" <?= ($escola && $escola->situacao == '2') ? 'selected' : ''; ?>>Inativo</option>
+                        </select>
+                    </div>
+
+                    <div class="mt-5">
+                        <button class="btn btn-success" type="submit" name="confirmar">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer></footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

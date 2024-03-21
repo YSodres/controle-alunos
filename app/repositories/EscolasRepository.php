@@ -29,4 +29,16 @@ class EscolasRepository extends AbstractRepository
         $stmt->bindValue(":situacao", $escola->situacao);
         $stmt->execute();
     }
+
+    public function update(Escola $escola)
+    {
+        $sql = "UPDATE escolas SET nome = :nome, endereco = :endereco
+                situacao = :situacao WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":nome", $escola->nome);
+        $stmt->bindValue(":endereco", $escola->endereco);
+        $stmt->bindValue(":situacao", $escola->situacao);
+        $stmt->bindValue(":id", $escola->id);
+        $stmt->execute();
+    }
 }
