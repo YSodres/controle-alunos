@@ -20,7 +20,9 @@
         <section class="container mt-4">
             <h1 class="text-center mb-4 fw-bold">Listagem de Escolas</h1>
 
-            <table class="table table-hover">
+            <input class="form-control mr-sm-2 mb-3 mt-4" type="search" id="search" placeholder="Buscar" aria-label="Search">
+
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -30,7 +32,7 @@
                         <th scope="col">Situação</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="table-to-search">
                     <?php foreach ($escolas as $escola): ?>
                         <tr>
                             <th scope="row"><?= $escola->id; ?></th>
@@ -46,6 +48,9 @@
     </main>
 
     <footer></footer>
+    <?php
+    require_once __DIR__ . '/filtro-busca.html';
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
