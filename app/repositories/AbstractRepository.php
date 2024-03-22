@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleAlunos\repositories;
+namespace ControleAlunos\Repositories;
 
 use PDO;
 

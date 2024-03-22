@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleAlunos\controllers;
+namespace ControleAlunos\Controllers;
 
 class TurmasController
 {

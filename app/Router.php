@@ -5,10 +5,12 @@ namespace ControleAlunos;
 class Router
 {
     private $routes;
+    private $dependencies;
 
-    public function __construct(array $routes)
+    public function __construct(array $routes, array $dependecies = [])
     {
         $this->routes = $routes;
+        $this->dependencies = $dependecies;
     }
 
     public function hasRoute($pagina)
@@ -28,7 +30,7 @@ class Router
 
         $nameController = $this->routes[$pagina];
         if (class_exists($nameController)) {
-            $controller = new $nameController;
+            $controller = new $nameController($this->dependencies['database']);
             if (method_exists($controller, $method)) {
                 $controller->$method();
             } else {

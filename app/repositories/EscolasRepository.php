@@ -1,9 +1,9 @@
 <?php
 
-namespace ControleAlunos\repositories;
+namespace ControleAlunos\Repositories;
 
-use ControleAlunos\models\Escola;
-use ControleAlunos\repositories\AbstractRepository;
+use ControleAlunos\Models\Escola;
+use ControleAlunos\Repositories\AbstractRepository;
 
 class EscolasRepository extends AbstractRepository
 {

@@ -1,6 +1,6 @@
 <?php 
 
-namespace ControleAlunos\controllers;
+namespace ControleAlunos\Controllers;
 
 use PDO;
 
@@ -8,10 +8,8 @@ abstract class AbstractController
 {
     public $pdo;
 
-    public function __construct()
+    public function __construct(PDO $pdo)
     {
-        require_once __DIR__ . "/../Database.php";
-
         $this->pdo = $pdo;
 
         $this->beforeAction();
