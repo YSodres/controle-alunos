@@ -6,6 +6,7 @@ use ControleAlunos\Router;
 use ControleAlunos\Controllers\RegistroEscolasController;
 use ControleAlunos\Controllers\ListagemEscolasController;
 use ControleAlunos\Controllers\AtualizacaoEscolasController;
+use ControleAlunos\Controllers\ObterDadosEscolaController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -16,7 +17,8 @@ $routes = [
     '' => ListagemEscolasController::class,
     'registrar-escola' => RegistroEscolasController::class,
     'listagem-escolas' => ListagemEscolasController::class,
-    'atualizar-escola' => AtualizacaoEscolasController::class
+    'atualizar-escola' => AtualizacaoEscolasController::class,
+    'obter-dados-escola' => ObterDadosEscolaController::class
 ];
 
 $request = $_SERVER['REQUEST_URI'];

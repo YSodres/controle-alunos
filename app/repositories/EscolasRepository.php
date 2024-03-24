@@ -41,4 +41,15 @@ class EscolasRepository extends AbstractRepository
         $stmt->bindValue(":id", $escola->id);
         $stmt->execute();
     }
+
+    public function find($id)
+    {
+        $sql = "SELECT id, nome, endereco, data_cadastro, status
+                FROM escolas WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

@@ -19,15 +19,15 @@ class AtualizacaoEscolasController extends AbstractController
 
     public function get()
     {  
+        $escolas = $this->escolasRepository->all();
+        $escolaId = null;
+        $escola = null;
+
         require_once __DIR__ . "/../../views/atualizacao-escolas.php";
     }
 
     public function post()
     {
-        $escolas = $this->escolasRepository->all();
-        $escolaId = $_POST["escola-id"] ?? null;
-        
-
         if (!empty($escolaId)){
             $escola = new Escola();
             $escola->id = $_POST["id"];
@@ -38,6 +38,7 @@ class AtualizacaoEscolasController extends AbstractController
             $this->escolasRepository->update($escola);
 
             header("Location: atualizar-escola");
+            exit;
         }
     }
 }
