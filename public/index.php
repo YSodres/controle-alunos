@@ -3,10 +3,9 @@
 declare(strict_types=1);
 
 use ControleAlunos\Router;
-use ControleAlunos\controllers\RegistroEscolasController;
-use ControleAlunos\controllers\ListagemEscolasController;
-use ControleAlunos\controllers\AtualizacaoEscolasController;
-
+use ControleAlunos\Controllers\RegistroEscolasController;
+use ControleAlunos\Controllers\ListagemEscolasController;
+use ControleAlunos\Controllers\AtualizacaoEscolasController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -24,5 +23,10 @@ $request = $_SERVER['REQUEST_URI'];
 
 $parsed_uri = parse_url($request);
 
-$router = new Router($routes);
+$database = new PDO("mysql:host=" . getenv("DATABASE_HOST") . 
+               ";dbname=" . getenv("DATABASE_DB"), 
+               getenv("DATABASE_USER"), 
+               getenv("DATABASE_PASSWORD"));
+
+$router = new Router($routes, ['database' => $database]);
 $router->run($parsed_uri['path']);
