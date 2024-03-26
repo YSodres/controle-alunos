@@ -12,22 +12,22 @@
 <body>
     <header id="header" class="header fixed-top d-flex align-items-center">
         <?php
-        require_once __DIR__ . '/sidebar.html';
+        require_once __DIR__ . "/sidebar.html";
         ?>
     </header>
 
     <main id="main" class="main">
         <section class="container mt-4">
-            <h1 class="text-center mb-4 fw-bold">Registro de Escolas</h1>
+            <h1 class="text-center mb-4 fw-bold">Atualização de Escolas</h1>
 
             <div class="d-flex .flex-colum">
                 <form method="post">
                     <div>
-                        <label for="escola-id" class="form-label fw-bold">Selecione uma Escola:</label>
+                        <label for="escola_id" class="form-label fw-bold">Selecione uma Escola:</label>
                         <select class="form-select" name="escola_id" id="escola_id" required>
                             <option value="" selected disabled>-</option>
                             <?php foreach ($escolas as $escolaOption): ?>
-                                <option value="<?= $escolaOption->id ?>" <?= ($escolaOption->id == $escolaId) ? 'selected' : '' ?>>
+                                <option value="<?= $escolaOption->id ?>">
                                     <?= $escolaOption->nome ?>
                                 </option>
                             <?php endforeach; ?>
@@ -36,19 +36,19 @@
 
                     <div class="mb-2">
                         <label for="nome" class="required form-label fw-bold">Nome:</label>
-                        <input type="text" class="form-control" id="nome" name="nome" value="<?= $escola ? $escola->nome : ''; ?>"readonly required>
+                        <input type="text" class="form-control" id="nome" name="nome" value="<?= $escola ? $escola->nome : ""; ?>"readonly required>
                     </div>
 
                     <div class="mb-2">
                         <label for="endereco" class="form-label fw-bold">Endereço:</label>
-                        <input type="text" class="form-control" id="endereco" name="endereco" value="<?= $escola ? $escola->endereco : ''; ?>" readonly>
+                        <input type="text" class="form-control" id="endereco" name="endereco" value="<?= $escola ? $escola->endereco : ""; ?>" readonly>
                     </div>
 
                     <div class="mb-2">
                         <label for="situacao" class="form-label fw-bold">Situação:</label>
                         <select class="form-select" id="situacao" name="situacao" disabled>
-                            <option value="1" <?= ($escola && $escola->situacao == '1') ? 'selected' : ''; ?>>Ativo</option>
-                            <option value="2" <?= ($escola && $escola->situacao == '2') ? 'selected' : ''; ?>>Inativo</option>
+                            <option value="1" <?= ($escola && $escola->status == "1") ? "selected" : ""; ?>>Ativo</option>
+                            <option value="2" <?= ($escola && $escola->status == "2") ? "selected" : ""; ?>>Inativo</option>
                         </select>
                     </div>
 
@@ -104,7 +104,7 @@
                     });
                 }
 
-                excluirButton.addEventListener('click', function (event) {
+                excluirButton.addEventListener("click", function (event) {
                 let confirmacao = confirm("Tem certeza que deseja excluir o registro da escola?");
 
                 if (!confirmacao) {

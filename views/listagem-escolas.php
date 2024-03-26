@@ -12,7 +12,7 @@
 <body>
     <header id="header" class="header fixed-top d-flex align-items-center">
         <?php
-        require_once __DIR__ . '/sidebar.html';
+        require_once __DIR__ . "/sidebar.html";
         ?>
     </header>
 
@@ -38,7 +38,7 @@
                             <th scope="row"><?= $escola->id; ?></th>
                             <td><?= $escola->nome; ?></td>
                             <td><?= $escola->endereco; ?></td>
-                            <td><?= date('d/m/Y', strtotime($escola->data_cadastro)); ?></td>
+                            <td><?= date("d/m/Y", strtotime($escola->data_cadastro)); ?></td>
                             <td><?= ($escola->status == 1) ? "Ativo" : "Inativo"; ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -49,7 +49,7 @@
 
     <footer></footer>
     <?php
-    require_once __DIR__ . '/filtro-busca.html';
+    require_once __DIR__ . "/filtro-busca.html";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

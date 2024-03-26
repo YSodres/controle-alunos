@@ -12,7 +12,7 @@
 <body>
     <header id="header" class="header fixed-top d-flex align-items-center">
         <?php
-        require_once __DIR__ . '/sidebar.html';
+        require_once __DIR__ . "/sidebar.html";
         ?>
     </header>
 

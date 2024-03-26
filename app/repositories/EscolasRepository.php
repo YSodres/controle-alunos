@@ -22,22 +22,22 @@ class EscolasRepository extends AbstractRepository
     public function store(Escola $escola)
     {
         $sql = "INSERT INTO escolas (nome, endereco, status) 
-                VALUES (:nome, :endereco, :situacao)";
+                VALUES (:nome, :endereco, :status)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":nome", $escola->nome);
         $stmt->bindValue(":endereco", $escola->endereco);
-        $stmt->bindValue(":situacao", $escola->situacao);
+        $stmt->bindValue(":status", $escola->status);
         $stmt->execute();
     }
 
     public function update(Escola $escola)
     {
-        $sql = "UPDATE escolas SET nome = :nome, endereco = :endereco
-                situacao = :situacao WHERE id = :id";
+        $sql = "UPDATE escolas SET nome = :nome, endereco = :endereco,
+                status = :status WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":nome", $escola->nome);
         $stmt->bindValue(":endereco", $escola->endereco);
-        $stmt->bindValue(":situacao", $escola->situacao);
+        $stmt->bindValue(":status", $escola->status);
         $stmt->bindValue(":id", $escola->id);
         $stmt->execute();
     }
@@ -51,5 +51,13 @@ class EscolasRepository extends AbstractRepository
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM escolas WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":id", $id);
+        $stmt->execute();
     }
 }

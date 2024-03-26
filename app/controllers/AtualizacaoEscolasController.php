@@ -20,7 +20,6 @@ class AtualizacaoEscolasController extends AbstractController
     public function get()
     {  
         $escolas = $this->escolasRepository->all();
-        $escolaId = null;
         $escola = null;
 
         require_once __DIR__ . "/../../views/atualizacao-escolas.php";
@@ -28,17 +27,24 @@ class AtualizacaoEscolasController extends AbstractController
 
     public function post()
     {
-        if (!empty($escolaId)){
+        if (isset($_POST["confirmar"]) && (!empty($_POST["escola_id"]))){
             $escola = new Escola();
-            $escola->id = $_POST["id"];
+            $escola->id = $_POST["escola_id"];
             $escola->nome = $_POST["nome"];
             $escola->endereco = $_POST["endereco"];
-            $escola->situacao = $_POST["situacao"];
-            
+            $escola->status = $_POST["situacao"];
+                
             $this->escolasRepository->update($escola);
 
-            header("Location: atualizar-escola");
-            exit;
+            header("Location: listagem-escolas");
+            exit();
+        }
+
+        if (isset($_POST["excluir"]) && (!empty($_POST["escola_id"]))){
+            $this->escolasRepository->delete($_POST["escola_id"]);
+
+            header("Location: listagem-escolas");
+            exit();
         }
     }
 }

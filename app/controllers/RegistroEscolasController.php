@@ -27,10 +27,11 @@ class RegistroEscolasController extends AbstractController
         $escola = new Escola();
         $escola->nome = $_POST["nome"];
         $escola->endereco = $_POST["endereco"];
-        $escola->situacao = $_POST["situacao"];
+        $escola->status = $_POST["situacao"];
 
         $this->escolasRepository->store($escola);
 
-        header("Location: registrar-escola");
+        header("Location: listagem-escolas");
+        exit();
     }
 }
