@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ControleAlunos\controllers;
 
-use ControleAlunos\models\Escola;
 use ControleAlunos\repositories\EscolasRepository;
 use ControleAlunos\controllers\AbstractController;
 
