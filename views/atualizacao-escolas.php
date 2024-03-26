@@ -47,8 +47,8 @@
                     <div class="mb-2">
                         <label for="situacao" class="form-label fw-bold">Situação:</label>
                         <select class="form-select" id="situacao" name="situacao" disabled>
-                            <option value="1" <?= ($escola && $escola->status == "1") ? "selected" : ""; ?>>Ativo</option>
-                            <option value="2" <?= ($escola && $escola->status == "2") ? "selected" : ""; ?>>Inativo</option>
+                            <option value="1" <?= ($escola && $escola->status == $escola->getStatus("ativo")) ? "selected" : ""; ?>>Ativo</option>
+                            <option value="2" <?= ($escola && $escola->status == $escola->getStatus("inativo")) ? "selected" : ""; ?>>Inativo</option>
                         </select>
                     </div>
 
