@@ -1,25 +1,3 @@
-<?php
-
-use ControleAlunos\models\Escola;
-use ControleAlunos\repositories\EscolasRepository;
-
-require_once(__DIR__ . "/../conexao-db.php");
-
-if (isset($_POST["confirmar"])) {
-    $escolasRepository = new EscolasRepository($pdo);
-
-    $escola = new Escola();
-    $escola->nome = $_POST["nome"];
-    $escola->endereco = $_POST["endereco"];
-    $escola->situacao = $_POST["situacao"];
-
-    $escolasRepository->salvar($escola);
-
-    header("Location: listagem-escolas.php");
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -27,7 +5,7 @@ if (isset($_POST["confirmar"])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Registro de Escolas</title>
-  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
