@@ -27,7 +27,9 @@
                         <select class="form-select" name="escola_id" id="escola_id" required>
                             <option value="" selected disabled>-</option>
                             <?php foreach ($escolas as $escolaOption): ?>
-                                <option value="<?= $escolaOption->id ?>">
+                                <option 
+                                    value="<?= $escolaOption->id ?>"
+                                >
                                     <?= $escolaOption->nome ?>
                                 </option>
                             <?php endforeach; ?>
@@ -47,8 +49,14 @@
                     <div class="mb-2">
                         <label for="situacao" class="form-label fw-bold">Situação:</label>
                         <select class="form-select" id="situacao" name="situacao" disabled>
-                            <option value="1" <?= ($escola && $escola->status == $escola->getStatus("ativo")) ? "selected" : ""; ?>>Ativo</option>
-                            <option value="2" <?= ($escola && $escola->status == $escola->getStatus("inativo")) ? "selected" : ""; ?>>Inativo</option>
+                            <?php foreach (\ControleAlunos\Models\Escola::STATUS as $key => $value): ?>
+                                <option 
+                                    value="<?= $value ?>"
+                                    <?= ($escola && $escola->status == $value) ? "selected" : ""; ?>
+                                >
+                                    <?= $key ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 
