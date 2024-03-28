@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Escola extends Model
 {
-    protected $fillable = ['nome','endereco','situacao'];
+    const STATUS = [
+        "ativo" => 1,
+        "inativo" => 2
+    ];
 }

@@ -2,23 +2,55 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Listagem de Escolas</title>
-  <link href="../assets/css/style.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Listagem de Escolas</title>
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
     <header id="header" class="header fixed-top d-flex align-items-center">
         <?php
-        require_once __DIR__ . '/sidebar.html';
+        require_once __DIR__ . "/sidebar.html";
         ?>
     </header>
 
-    <main></main>
+    <main id="main" class="main">
+        <section class="container mt-4">
+            <h1 class="text-center mb-4 fw-bold">Listagem de Escolas</h1>
+
+            <input class="form-control mr-sm-2 mb-3 mt-4" type="search" id="search" placeholder="Buscar" aria-label="Search">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Data de Cadastro</th>
+                        <th scope="col">Situação</th>
+                    </tr>
+                </thead>
+                <tbody id="table-to-search">
+                    <?php foreach ($escolas as $escola): ?>
+                        <tr>
+                            <th scope="row"><?= $escola->id; ?></th>
+                            <td><?= $escola->nome; ?></td>
+                            <td><?= $escola->endereco; ?></td>
+                            <td><?= date("d/m/Y", strtotime($escola->data_cadastro)); ?></td>
+                            <td><?= ($escola->status == 1) ? "Ativo" : "Inativo"; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                </table>
+        </section>
+    </main>
 
     <footer></footer>
+    <?php
+    require_once __DIR__ . "/filtro-busca.html";
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 

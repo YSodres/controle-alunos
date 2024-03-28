@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use ControleAlunos\Router;
 use ControleAlunos\Controllers\RegistroEscolasController;
+use ControleAlunos\Controllers\ListagemEscolasController;
+use ControleAlunos\Controllers\AtualizacaoEscolasController;
+use ControleAlunos\Controllers\ObterDadosEscolaController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -11,8 +14,11 @@ $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . "/../");
 $dotenv->safeLoad();
 
 $routes = [
-    '' => RegistroEscolasController::class,
-    'registrar-escola' => RegistroEscolasController::class
+    '' => ListagemEscolasController::class,
+    'registrar-escola' => RegistroEscolasController::class,
+    'listagem-escolas' => ListagemEscolasController::class,
+    'atualizar-escola' => AtualizacaoEscolasController::class,
+    'obter-dados-escola' => ObterDadosEscolaController::class
 ];
 
 $request = $_SERVER['REQUEST_URI'];
