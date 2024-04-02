@@ -22,7 +22,7 @@ class EscolasController extends AbstractController
     public function index()
     {
         switch($_SERVER['PATH_INFO']){
-            case '/':
+            case '':
                 $escolas = $this->escolasRepository->all();
                 require_once __DIR__ . "/../../views/listagem-escolas.php";
             break;
