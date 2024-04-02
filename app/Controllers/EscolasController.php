@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ControleAlunos\controllers;
+namespace ControleAlunos\Controllers;
 
 use PDO;
 use PDOException;
