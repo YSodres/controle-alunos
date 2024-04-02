@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ControleAlunos\controllers;
+namespace ControleAlunos\Controllers;
 
-use ControleAlunos\models\Escola;
-use ControleAlunos\repositories\EscolasRepository;
-use ControleAlunos\controllers\AbstractController;
+use ControleAlunos\Models\Escola;
+use ControleAlunos\Repositories\EscolasRepository;
+use ControleAlunos\Controllers\AbstractController;
 
 class AtualizacaoEscolasController extends AbstractController
 {

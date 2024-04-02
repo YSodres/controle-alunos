@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ControleAlunos\controllers;
 
-use ControleAlunos\repositories\EscolasRepository;
-use ControleAlunos\controllers\AbstractController;
+use ControleAlunos\Repositories\EscolasRepository;
+use ControleAlunos\Controllers\AbstractController;
 
 class ListagemEscolasController extends AbstractController
 {
