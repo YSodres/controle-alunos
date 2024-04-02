@@ -12,12 +12,12 @@ $dotenv->safeLoad();
 
 $routes = [
     'GET|/' => [EscolasController::class, 'index'],
-    'GET|/registrar-escola' => [EscolasController::class, 'index'],
+    'GET|/registrar-escola' => [EscolasController::class, 'create'],
     'POST|/registrar-escola' => [EscolasController::class, 'store'],
     'GET|/listagem-escolas' => [EscolasController::class, 'index'],
-    'GET|/atualizar-escola' => [EscolasController::class, 'index'],
+    'GET|/atualizar-escola' => [EscolasController::class, 'edit'],
     'POST|/atualizar-escola' => [EscolasController::class, 'update'],
-    'POST|/obter-dados-escola' => [EscolasController::class, 'find']
+    'POST|/obter-dados-escola' => [EscolasController::class, 'show']
 ];
 
 $pathInfo = $_SERVER['PATH_INFO'] ?? '/';

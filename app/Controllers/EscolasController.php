@@ -21,25 +21,21 @@ class EscolasController extends AbstractController
 
     public function index()
     {
-        switch($_SERVER['PATH_INFO']){
-            case '':
-                $escolas = $this->escolasRepository->all();
-                require_once __DIR__ . "/../../views/listagem-escolas.php";
-            break;
-            case '/listagem-escolas':
-                $escolas = $this->escolasRepository->all();
-                require_once __DIR__ . "/../../views/listagem-escolas.php";
-            break;
-            case '/registrar-escola':
-                require_once __DIR__ . "/../../views/registro-escolas.php";
-            break;
-            case '/atualizar-escola':
-                $escolas = $this->escolasRepository->all();
-                $escola = null;
+        $escolas = $this->escolasRepository->all();
+        require_once __DIR__ . "/../../views/listagem-escolas.php";
+    }
 
-                require_once __DIR__ . "/../../views/atualizacao-escolas.php";
-            break;
-        }
+    public function create()
+    {
+        require_once __DIR__ . "/../../views/registro-escolas.php";
+    }
+
+    public function edit()
+    {
+        $escolas = $this->escolasRepository->all();
+        $escola = null;
+
+        require_once __DIR__ . "/../../views/atualizacao-escolas.php";
     }
 
     public function store()
@@ -78,7 +74,7 @@ class EscolasController extends AbstractController
         }
     }
 
-    public function find()
+    public function show()
     {
         try {
             if (isset($_POST["escola_id"])) {
