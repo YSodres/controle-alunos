@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ControleAlunos\Controllers;
 
-use PDO;
 use ControleAlunos\Models\Escola;
 use ControleAlunos\Repositories\EscolasRepository;
 use ControleAlunos\Controllers\AbstractController;
@@ -52,20 +51,20 @@ class EscolasController extends AbstractController
 
     public function update()
     {
-        if (isset($_POST["confirmar"]) && (!empty($_POST["escola_id"]))){
+        if (isset($_POST["confirmar"]) && (!empty($_POST["escola_id"]))) {
             $escola = new Escola();
             $escola->id = $_POST["escola_id"];
             $escola->nome = $_POST["nome"];
             $escola->endereco = $_POST["endereco"];
             $escola->status = $_POST["situacao"];
-                
+
             $this->escolasRepository->update($escola);
 
             header("Location: listagem-escolas");
             exit();
         }
 
-        if (isset($_POST["excluir"]) && (!empty($_POST["escola_id"]))){
+        if (isset($_POST["excluir"]) && (!empty($_POST["escola_id"]))) {
             $this->escolasRepository->delete($_POST["escola_id"]);
 
             header("Location: listagem-escolas");
@@ -75,19 +74,12 @@ class EscolasController extends AbstractController
 
     public function show()
     {
-        if (isset($_POST["escola_id"])) {
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                
-            $escolasRepository = new EscolasRepository($this->pdo);
-            $escola = $escolasRepository->find($_POST["escola_id"]);
-        
-            if ($escola) {
-                echo json_encode($escola);
-            } else {
-                echo json_encode(["error" => "Escola não encontrada"]);
-            }
+        $escola = $this->escolasRepository->find($_GET["escola_id"]);
+
+        if ($escola) {
+            echo json_encode($escola);
         } else {
-            echo json_encode(["error" => "ID da escola não fornecida"]);
+            echo json_encode(["error" => "Escola não encontrada"]);
         }
     }
 }

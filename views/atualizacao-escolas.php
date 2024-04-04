@@ -83,12 +83,11 @@
                 let selectedOption = escola.options[escola.selectedIndex];
 
                 if (selectedOption.value !== "") {
-                    fetch("obter-dados-escola", {
-                        method: "POST",
+                    fetch("obter-dados-escola?escola_id=" + selectedOption.value, {
+                        method: "GET",
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        body: "escola_id=" + selectedOption.value
+                        }
                     })
                     .then(response => {
                         if (!response.ok) {
