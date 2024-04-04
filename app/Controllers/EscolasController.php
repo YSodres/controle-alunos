@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace ControleAlunos\Controllers;
 
 use PDO;
-use PDOException;
 use ControleAlunos\Models\Escola;
 use ControleAlunos\Repositories\EscolasRepository;
 use ControleAlunos\Controllers\AbstractController;
@@ -76,23 +75,19 @@ class EscolasController extends AbstractController
 
     public function show()
     {
-        try {
-            if (isset($_POST["escola_id"])) {
-                $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        if (isset($_POST["escola_id"])) {
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
-                $escolasRepository = new EscolasRepository($this->pdo);
-                $escola = $escolasRepository->find($_POST["escola_id"]);
+            $escolasRepository = new EscolasRepository($this->pdo);
+            $escola = $escolasRepository->find($_POST["escola_id"]);
         
-                if ($escola) {
-                    echo json_encode($escola);
-                } else {
-                    echo json_encode(["error" => "Escola não encontrada"]);
-                }
+            if ($escola) {
+                echo json_encode($escola);
             } else {
-                echo json_encode(["error" => "ID da escola não fornecida"]);
+                echo json_encode(["error" => "Escola não encontrada"]);
             }
-        } catch (PDOException $e) {
-            echo json_encode(["error" => "Erro na conexão com o banco de dados"]);
+        } else {
+            echo json_encode(["error" => "ID da escola não fornecida"]);
         }
     }
 }
