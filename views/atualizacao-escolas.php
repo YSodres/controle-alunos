@@ -112,7 +112,7 @@
                 }
 
                 excluirButton.addEventListener("click", function (event) {
-                let confirmacao = confirm("Tem certeza que deseja excluir o registro da escola?");
+                let confirmacao = confirm("Tem certeza que deseja excluir o cadastro da escola?");
 
                 if (!confirmacao) {
                     event.preventDefault();

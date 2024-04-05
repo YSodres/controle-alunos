@@ -25,7 +25,7 @@ class EscolasController extends AbstractController
 
     public function create()
     {
-        require_once __DIR__ . "/../../views/registro-escolas.php";
+        require_once __DIR__ . "/../../views/cadastro-escolas.php";
     }
 
     public function edit()
@@ -45,7 +45,7 @@ class EscolasController extends AbstractController
 
         $this->escolasRepository->store($escola);
 
-        header("Location: listagem-escolas");
+        header("Location: listar-escolas");
         exit();
     }
 
@@ -60,7 +60,7 @@ class EscolasController extends AbstractController
 
             $this->escolasRepository->update($escola);
 
-            header("Location: listagem-escolas");
+            header("Location: listar-escolas");
             exit();
         }
 
@@ -73,7 +73,7 @@ class EscolasController extends AbstractController
     {
         $this->escolasRepository->delete($_POST["escola_id"]);
 
-        header("Location: listagem-escolas");
+        header("Location: listar-escolas");
         exit();
     }
 
