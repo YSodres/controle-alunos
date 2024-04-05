@@ -65,11 +65,16 @@ class EscolasController extends AbstractController
         }
 
         if (isset($_POST["excluir"]) && (!empty($_POST["escola_id"]))) {
-            $this->escolasRepository->delete($_POST["escola_id"]);
-
-            header("Location: listagem-escolas");
-            exit();
+            $this->delete();
         }
+    }
+
+    private function delete()
+    {
+        $this->escolasRepository->delete($_POST["escola_id"]);
+
+        header("Location: listagem-escolas");
+        exit();
     }
 
     public function show()
