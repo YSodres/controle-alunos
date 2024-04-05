@@ -33,8 +33,8 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="endereco" class="form-label fw-bold">Telefone:</label>
-                        <input type="tel" class="form-control" id="endereco" name="endereco">
+                        <label for="telefone" class="form-label fw-bold">Telefone:</label>
+                        <input type="tel" class="form-control" id="telefone" name="telefone">
                     </div>
 
                     <div class="mb-2">
