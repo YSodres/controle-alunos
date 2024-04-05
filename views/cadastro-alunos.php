@@ -34,7 +34,7 @@
 
                     <div class="mb-2">
                         <label for="endereco" class="form-label fw-bold">Telefone:</label>
-                        <input type="number" class="form-control" id="endereco" name="endereco">
+                        <input type="tel" class="form-control" id="endereco" name="endereco">
                     </div>
 
                     <div class="mb-2">
