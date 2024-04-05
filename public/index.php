@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use ControleAlunos\Router;
 use ControleAlunos\Controllers\EscolasController;
+use ControleAlunos\Controllers\AlunosController;
+
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -19,7 +21,7 @@ $routes = [
     'POST|/atualizar-escola' => [EscolasController::class, 'update'],
     'GET|/obter-dados-escola' => [EscolasController::class, 'show'],
 
-    'GET|/cadastrar-aluno' => [EscolasController::class, 'create'],
+    'GET|/cadastrar-aluno' => [AlunosController::class, 'create'],
 ];
 
 $pathInfo = $_SERVER['PATH_INFO'] ?? '/';

@@ -16,4 +16,9 @@ class AlunosController extends AbstractController
     {
         $this->alunosRepository = new AlunosRepository($this->pdo);
     }
+
+    public function create()
+    {
+        require_once __DIR__ . "/../../views/cadastro-alunos.php";
+    }
 }

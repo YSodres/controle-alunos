@@ -24,7 +24,7 @@
                 <form method="post">
                     <div class="mb-2">
                         <label for="escola" class="form-label fw-bold">ID da Escola:</label>
-                        <input type="number" class="form-control" id="escola" name="escola" >
+                        <input type="number" class="form-control" id="escola" name="escola">
                     </div>
 
                     <div class="mb-2">
@@ -34,22 +34,22 @@
 
                     <div class="mb-2">
                         <label for="endereco" class="form-label fw-bold">Telefone:</label>
-                        <input type="number" class="form-control" id="endereco" name="endereco" >
+                        <input type="number" class="form-control" id="endereco" name="endereco">
                     </div>
 
                     <div class="mb-2">
-                        <label for="email" class="form-label fw-bold">E-mail:</label>
-                        <input type="email" class="form-control" id="email" name="email" >
+                        <label for="email" class="required form-label fw-bold">E-mail:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
 
                     <div class="mb-2">
                         <label for="dataNascimento" class="form-label fw-bold">Data de Nascimento:</label>
-                        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" >
+                        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento">
                     </div>
 
                     <div class="mb-2">
                         <label for="genero" class="form-label fw-bold">Gênero:</label>
-                        <select class="form-select" id="genero" name="genero" required>
+                        <select class="form-select" id="genero" name="genero">
                             <option value="M">Masculino</option>
                             <option value="F">Feminino</option>
                         </select>
