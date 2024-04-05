@@ -13,22 +13,24 @@ class Router
         $this->dependencies = $dependecies;
     }
 
-    public function hasRoute($pagina)
+    public function hasRoute()
     {
-        return array_key_exists($pagina, $this->routes);
+        $pathInfo = $_SERVER['PATH_INFO'] ?? '/';
+        $httpMethod = $_SERVER['REQUEST_METHOD'];
+
+        $route = "$httpMethod|$pathInfo";
+        return array_key_exists($route, $this->routes);
     }
 
-    public function run($pagina)
+    public function run($controllerData)
     {
-        $method = $_SERVER['REQUEST_METHOD'];
+        $nameController = $controllerData[0];
+        $method = $controllerData[1];
 
-        $pagina = ltrim($pagina, "/");
-        
-        if(self::hasRoute($pagina) == false) {
+        if (self::hasRoute() == false) {
             return $this->pageNotFound();
         };
 
-        $nameController = $this->routes[$pagina];
         if (class_exists($nameController)) {
             $controller = new $nameController($this->dependencies['database']);
             if (method_exists($controller, $method)) {
@@ -40,7 +42,7 @@ class Router
             return $this->pageNotFound();
         }
     }
-    
+
     public function pageNotFound()
     {
         http_response_code(404);
