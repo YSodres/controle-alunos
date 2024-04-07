@@ -3,32 +3,16 @@
 declare(strict_types=1);
 
 define('APP_PATH', __DIR__ . '/../app');
+define('CONFIG_PATH', __DIR__ . '/../config');
+define('ROOT_PATH', __DIR__ . '/../');
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once ROOT_PATH . '/vendor/autoload.php';
 
 use ControleAlunos\Router;
-use ControleAlunos\Controllers\EscolasController;
-use ControleAlunos\Controllers\AlunosController;
 
-$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . '/../');
-$dotenv->safeLoad();
+require_once CONFIG_PATH . '/database.php';
 
-$database = new PDO('mysql:host=' . getenv('DATABASE_HOST') . 
-               ';dbname=' . getenv('DATABASE_DB'), 
-               getenv('DATABASE_USER'), 
-               getenv('DATABASE_PASSWORD'));
-
-$routes = [
-    'GET|/' => [EscolasController::class, 'index'],
-    'GET|/cadastrar-escola' => [EscolasController::class, 'create'],
-    'POST|/cadastrar-escola' => [EscolasController::class, 'store'],
-    'GET|/listar-escolas' => [EscolasController::class, 'index'],
-    'GET|/atualizar-escola' => [EscolasController::class, 'edit'],
-    'POST|/atualizar-escola' => [EscolasController::class, 'update'],
-    'GET|/obter-dados-escola' => [EscolasController::class, 'show'],
-
-    'GET|/cadastrar-aluno' => [AlunosController::class, 'create'],
-];
+require_once CONFIG_PATH . '/routes.php';
 
 $pathInfo = $_SERVER['PATH_INFO'] ?? '/';
 $httpMethod = $_SERVER['REQUEST_METHOD'];
