@@ -64,17 +64,22 @@ class EscolasController extends AbstractController
 
             $this->redirectTo('listar-escolas');
         }
-
-        if (isset($_POST['excluir']) && (!empty($_POST['id']))) {
-            $this->delete();
-        }
     }
 
-    private function delete()
+    public function delete()
     {
-        $this->escolasRepository->delete($_POST['id']);
+        $response = ['success' => false];
 
-        $this->redirectTo('listar-escolas');
+        if (!empty($_GET['id'])) {
+            $this->escolasRepository->delete($_GET['id']);
+            $response['success'] = true;
+        } else {
+            $response['message'] = 'ID da escola não fornecido.';
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit();
     }
 
     public function show()

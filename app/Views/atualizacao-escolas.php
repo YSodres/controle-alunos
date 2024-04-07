@@ -62,7 +62,7 @@
 
                     <div class="mt-5">
                         <button class="btn btn-success" type="submit" id="confirmar" name="confirmar" disabled>Confirmar</button>
-                        <button class="btn btn-danger" type="submit" id="excluir" name="excluir" disabled>Excluir</button>
+                        <button class="btn btn-danger" type="button" id="excluir" name="excluir" disabled>Excluir</button>
                     </div>
                 </form>
             </div>
@@ -110,14 +110,38 @@
                         console.error("Erro na requisição:", error);
                     });
                 }
+            });
 
-                excluirButton.addEventListener("click", function (event) {
+            excluirButton.addEventListener("click", function () {
                 let confirmacao = confirm("Tem certeza que deseja excluir o cadastro da escola?");
-
-                if (!confirmacao) {
-                    event.preventDefault();
+                
+                if (confirmacao) {
+                    let selectedOption = escola.options[escola.selectedIndex].value;
+                    
+                    fetch("excluir-escola?id=" + selectedOption, {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Erro na requisição: " + response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            alert("Escola excluída com sucesso");
+                            window.location.href = "listar-escolas";
+                        } else {
+                            alert("Erro ao excluir escola: " + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erro na requisição:", error);
+                    });
                 }
-                })
             });
         });
     </script>
