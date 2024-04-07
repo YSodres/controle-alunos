@@ -20,20 +20,23 @@ class EscolasController extends AbstractController
     public function index()
     {
         $escolas = $this->escolasRepository->all();
-        require_once __DIR__ . "/../../views/listagem-escolas.php";
+
+        $this->render('listagem-escolas', ['escolas' => $escolas]);
     }
 
     public function create()
     {
-        require_once __DIR__ . "/../../views/cadastro-escolas.php";
+        $this->render('cadastro-escolas');
     }
 
     public function edit()
     {
-        $escolas = $this->escolasRepository->all();
-        $escola = null;
+        $params = [
+            'escolas' => $escolas = $this->escolasRepository->all(),
+            'escola' => null
+        ];
 
-        require_once __DIR__ . "/../../views/atualizacao-escolas.php";
+        $this->render('atualizacao-escolas', $params);
     }
 
     public function store()
@@ -45,8 +48,7 @@ class EscolasController extends AbstractController
 
         $this->escolasRepository->store($escola);
 
-        header("Location: listar-escolas");
-        exit();
+        $this->redirectTo('listar-escolas');
     }
 
     public function update()
@@ -60,8 +62,7 @@ class EscolasController extends AbstractController
 
             $this->escolasRepository->update($escola);
 
-            header("Location: listar-escolas");
-            exit();
+            $this->redirectTo('listar-escolas');
         }
 
         if (isset($_POST["excluir"]) && (!empty($_POST["id"]))) {
@@ -73,8 +74,7 @@ class EscolasController extends AbstractController
     {
         $this->escolasRepository->delete($_POST["id"]);
 
-        header("Location: listar-escolas");
-        exit();
+        $this->redirectTo('listar-escolas');
     }
 
     public function show()

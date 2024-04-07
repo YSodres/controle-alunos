@@ -2,15 +2,21 @@
 
 declare(strict_types=1);
 
+define('APP_PATH', __DIR__ . '/../app');
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
 use ControleAlunos\Router;
 use ControleAlunos\Controllers\EscolasController;
 use ControleAlunos\Controllers\AlunosController;
 
-
-require_once __DIR__ . '/../vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . "/../");
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__ . '/../');
 $dotenv->safeLoad();
+
+$database = new PDO('mysql:host=' . getenv('DATABASE_HOST') . 
+               ';dbname=' . getenv('DATABASE_DB'), 
+               getenv('DATABASE_USER'), 
+               getenv('DATABASE_PASSWORD'));
 
 $routes = [
     'GET|/' => [EscolasController::class, 'index'],
@@ -28,11 +34,6 @@ $pathInfo = $_SERVER['PATH_INFO'] ?? '/';
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 
 $controllerData = $routes["$httpMethod|$pathInfo"];
-
-$database = new PDO("mysql:host=" . getenv("DATABASE_HOST") . 
-               ";dbname=" . getenv("DATABASE_DB"), 
-               getenv("DATABASE_USER"), 
-               getenv("DATABASE_PASSWORD"));
 
 $router = new Router($routes, ['database' => $database]);
 $router->run($controllerData);
