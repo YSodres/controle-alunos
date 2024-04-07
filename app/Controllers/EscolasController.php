@@ -77,9 +77,7 @@ class EscolasController extends AbstractController
             $response['message'] = 'ID da escola não fornecido.';
         }
 
-        header('Content-Type: application/json');
-        echo json_encode($response);
-        exit();
+        $this->renderJson($response);
     }
 
     public function show()
@@ -87,9 +85,9 @@ class EscolasController extends AbstractController
         $escola = $this->escolasRepository->find($_GET['id']);
 
         if ($escola) {
-            echo json_encode($escola);
+            $this->renderJson($escola);
         } else {
-            echo json_encode(['error' => 'Escola não encontrada']);
+            $this->renderJson(['error' => 'Escola não encontrada']);
         }
     }
 }

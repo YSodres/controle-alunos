@@ -34,4 +34,11 @@ abstract class AbstractController
         header("Location: $pagina");
         exit();
     }
+
+    protected function renderJson($response)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit();
+    }
 }
