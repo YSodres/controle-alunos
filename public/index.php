@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-define('APP_PATH', __DIR__ . '/../app');
-define('CONFIG_PATH', __DIR__ . '/../config');
 define('ROOT_PATH', __DIR__ . '/../');
+define('APP_PATH', ROOT_PATH. '/app');
+define('CONFIG_PATH', ROOT_PATH. '/config');
 
 require_once ROOT_PATH . '/vendor/autoload.php';
 

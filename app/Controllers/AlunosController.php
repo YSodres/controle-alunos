@@ -19,6 +19,6 @@ class AlunosController extends AbstractController
 
     public function create()
     {
-        require_once __DIR__ . "/../../views/cadastro-alunos.php";
+        $this->render('cadastro-alunos');
     }
 }
