@@ -33,8 +33,8 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="situacao" class="form-label fw-bold">Situação:</label>
-                        <select class="form-select" id="situacao" name="situacao" required>
+                        <label for="status" class="form-label fw-bold">Situação:</label>
+                        <select class="form-select" id="status" name="status" required>
                             <option value="1">Ativo</option>
                             <option value="2">Inativo</option>
                         </select>

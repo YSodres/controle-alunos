@@ -23,8 +23,8 @@
             <div class="d-flex .flex-colum">
                 <form method="post">
                     <div>
-                        <label for="escola_id" class="form-label fw-bold">Selecione uma Escola:</label>
-                        <select class="form-select" name="escola_id" id="escola_id" required>
+                        <label for="id" class="form-label fw-bold">Selecione uma Escola:</label>
+                        <select class="form-select" name="id" id="id" required>
                             <option value="" selected disabled>-</option>
                             <?php foreach ($escolas as $escolaOption): ?>
                                 <option 
@@ -47,8 +47,8 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="situacao" class="form-label fw-bold">Situação:</label>
-                        <select class="form-select" id="situacao" name="situacao" disabled>
+                        <label for="status" class="form-label fw-bold">Situação:</label>
+                        <select class="form-select" id="status" name="status" disabled>
                             <?php foreach (\ControleAlunos\Models\Escola::STATUS as $key => $value): ?>
                                 <option 
                                     value="<?= $value ?>"
@@ -72,10 +72,10 @@
     <footer></footer>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let escola = document.getElementById("escola_id");
+            let escola = document.getElementById("id");
             let nomeInput = document.getElementById("nome");
             let enderecoInput = document.getElementById("endereco");
-            let statusSelect = document.getElementById("situacao");
+            let statusSelect = document.getElementById("status");
             let confirmarButton = document.getElementById("confirmar");
             let excluirButton = document.getElementById("excluir");
 
@@ -83,7 +83,7 @@
                 let selectedOption = escola.options[escola.selectedIndex];
 
                 if (selectedOption.value !== "") {
-                    fetch("obter-dados-escola?escola_id=" + selectedOption.value, {
+                    fetch("obter-dados-escola?id=" + selectedOption.value, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded"

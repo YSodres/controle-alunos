@@ -23,8 +23,8 @@
             <div class="d-flex .flex-colum">
                 <form method="post">
                     <div class="mb-2">
-                        <label for="escola" class="form-label fw-bold">ID da Escola:</label>
-                        <input type="number" class="form-control" id="escola" name="escola">
+                        <label for="escola_id" class="form-label fw-bold">ID da Escola:</label>
+                        <input type="number" class="form-control" id="escola_id" name="escola_id">
                     </div>
 
                     <div class="mb-2">
@@ -43,8 +43,8 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="dataNascimento" class="form-label fw-bold">Data de Nascimento:</label>
-                        <input type="date" class="form-control" id="dataNascimento" name="dataNascimento">
+                        <label for="data_nascimento" class="form-label fw-bold">Data de Nascimento:</label>
+                        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
                     </div>
 
                     <div class="mb-2">

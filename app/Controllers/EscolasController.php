@@ -41,7 +41,7 @@ class EscolasController extends AbstractController
         $escola = new Escola();
         $escola->nome = $_POST["nome"];
         $escola->endereco = $_POST["endereco"];
-        $escola->status = $_POST["situacao"];
+        $escola->status = $_POST["status"];
 
         $this->escolasRepository->store($escola);
 
@@ -51,12 +51,12 @@ class EscolasController extends AbstractController
 
     public function update()
     {
-        if (isset($_POST["confirmar"]) && (!empty($_POST["escola_id"]))) {
+        if (isset($_POST["confirmar"]) && (!empty($_POST["id"]))) {
             $escola = new Escola();
-            $escola->id = $_POST["escola_id"];
+            $escola->id = $_POST["id"];
             $escola->nome = $_POST["nome"];
             $escola->endereco = $_POST["endereco"];
-            $escola->status = $_POST["situacao"];
+            $escola->status = $_POST["status"];
 
             $this->escolasRepository->update($escola);
 
@@ -64,14 +64,14 @@ class EscolasController extends AbstractController
             exit();
         }
 
-        if (isset($_POST["excluir"]) && (!empty($_POST["escola_id"]))) {
+        if (isset($_POST["excluir"]) && (!empty($_POST["id"]))) {
             $this->delete();
         }
     }
 
     private function delete()
     {
-        $this->escolasRepository->delete($_POST["escola_id"]);
+        $this->escolasRepository->delete($_POST["id"]);
 
         header("Location: listar-escolas");
         exit();
@@ -79,7 +79,7 @@ class EscolasController extends AbstractController
 
     public function show()
     {
-        $escola = $this->escolasRepository->find($_GET["escola_id"]);
+        $escola = $this->escolasRepository->find($_GET["id"]);
 
         if ($escola) {
             echo json_encode($escola);
