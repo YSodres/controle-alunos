@@ -13,5 +13,11 @@ $routes = [
     'GET|/obter-dados-escola' => [EscolasController::class, 'show'],
     'DELETE|/excluir-escola' => [EscolasController::class, 'delete'],
 
-    'GET|/cadastrar-aluno' => [AlunosController::class, 'create']
+    'GET|/cadastrar-aluno' => [AlunosController::class, 'create'],
+    'POST|/cadastrar-aluno' => [AlunosController::class, 'store'],
+    'GET|/listar-alunos' => [AlunosController::class, 'index'],
+    'GET|/atualizar-aluno' => [AlunosController::class, 'edit'],
+    'POST|/atualizar-aluno' => [AlunosController::class, 'update'],
+    'GET|/obter-dados-aluno' => [AlunosController::class, 'show'],
+    'DELETE|/excluir-aluno' => [AlunosController::class, 'delete'],
 ];
