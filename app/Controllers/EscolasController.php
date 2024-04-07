@@ -42,9 +42,9 @@ class EscolasController extends AbstractController
     public function store()
     {
         $escola = new Escola();
-        $escola->nome = $_POST["nome"];
-        $escola->endereco = $_POST["endereco"];
-        $escola->status = $_POST["status"];
+        $escola->nome = $_POST['nome'];
+        $escola->endereco = $_POST['endereco'];
+        $escola->status = $_POST['status'];
 
         $this->escolasRepository->store($escola);
 
@@ -53,38 +53,38 @@ class EscolasController extends AbstractController
 
     public function update()
     {
-        if (isset($_POST["confirmar"]) && (!empty($_POST["id"]))) {
+        if (isset($_POST['confirmar']) && (!empty($_POST['id']))) {
             $escola = new Escola();
-            $escola->id = $_POST["id"];
-            $escola->nome = $_POST["nome"];
-            $escola->endereco = $_POST["endereco"];
-            $escola->status = $_POST["status"];
+            $escola->id = $_POST['id'];
+            $escola->nome = $_POST['nome'];
+            $escola->endereco = $_POST['endereco'];
+            $escola->status = $_POST['status'];
 
             $this->escolasRepository->update($escola);
 
             $this->redirectTo('listar-escolas');
         }
 
-        if (isset($_POST["excluir"]) && (!empty($_POST["id"]))) {
+        if (isset($_POST['excluir']) && (!empty($_POST['id']))) {
             $this->delete();
         }
     }
 
     private function delete()
     {
-        $this->escolasRepository->delete($_POST["id"]);
+        $this->escolasRepository->delete($_POST['id']);
 
         $this->redirectTo('listar-escolas');
     }
 
     public function show()
     {
-        $escola = $this->escolasRepository->find($_GET["id"]);
+        $escola = $this->escolasRepository->find($_GET['id']);
 
         if ($escola) {
             echo json_encode($escola);
         } else {
-            echo json_encode(["error" => "Escola não encontrada"]);
+            echo json_encode(['error' => 'Escola não encontrada']);
         }
     }
 }
