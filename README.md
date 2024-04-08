@@ -16,6 +16,7 @@ CREATE TABLE Escolas (
 
 CREATE TABLE Turmas (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
     ano INT NOT NULL,
     nivel_ensino INT NOT NULL,
     serie INT NOT NULL,

@@ -20,10 +20,11 @@ class TurmasRepository extends AbstractRepository
 
     public function store(Turma $turma)
     {
-        $sql = "INSERT INTO turmas (escola_id, ano, nivel_ensino, serie, turno) 
-                VALUES (:escola_id, :ano, :nivel_ensino, :serie, :turno)";
+        $sql = "INSERT INTO turmas (escola_id, nome, ano, nivel_ensino, serie, turno) 
+                VALUES (:escola_id, :nome, :ano, :nivel_ensino, :serie, :turno)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":escola_id", $turma->escola_id);
+        $stmt->bindValue(":nome", $turma->nome);
         $stmt->bindValue(":ano", $turma->ano);
         $stmt->bindValue(":nivel_ensino", $turma->nivel_ensino);
         $stmt->bindValue(":serie", $turma->serie);
@@ -33,10 +34,11 @@ class TurmasRepository extends AbstractRepository
 
     public function update(Turma $turma)
     {
-        $sql = "UPDATE turmas SET escola_id = :escola_id, ano = :ano, nivel_ensino = :nivel_ensino,
+        $sql = "UPDATE turmas SET escola_id = :escola_id, nome = :nome, ano = :ano, nivel_ensino = :nivel_ensino,
                 serie = :serie, turno = :turno WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":escola_id", $turma->escola_id);
+        $stmt->bindValue(":nome", $turma->nome);
         $stmt->bindValue(":ano", $turma->ano);
         $stmt->bindValue(":nivel_ensino", $turma->nivel_ensino);
         $stmt->bindValue(":serie", $turma->serie);

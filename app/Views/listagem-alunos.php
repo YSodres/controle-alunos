@@ -43,7 +43,7 @@
                             <td><?= $aluno->telefone; ?></td>
                             <td><?= $aluno->email; ?></td>
                             <td><?= date("d/m/Y", strtotime($aluno->data_nascimento)); ?></td>
-                            <td><?= ($aluno->genero == "M") ? "Masculino" : "Feminino"; ?></td>
+                            <td><?= array_search($aluno->genero, \ControleAlunos\Models\Aluno::GENERO); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

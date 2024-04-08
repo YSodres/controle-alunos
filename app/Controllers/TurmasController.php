@@ -34,10 +34,10 @@ class TurmasController extends AbstractController
         $turma = new Turma();
         $turma->escola_id = $_POST['escola_id'];
         $turma->nome = $_POST['nome'];
-        $turma->telefone = $_POST['telefone'];
-        $turma->email = $_POST['email'];
-        $turma->data_nascimento = $_POST['data_nascimento'];
-        $turma->genero = $_POST['genero'];
+        $turma->ano = $_POST['ano'];
+        $turma->nivel_ensino = $_POST['nivel_ensino'];
+        $turma->serie = $_POST['serie'];
+        $turma->turno = $_POST['turno'];
 
         $this->turmasRepository->store($turma);
 
@@ -61,10 +61,10 @@ class TurmasController extends AbstractController
             $turma->id = $_POST['id'];
             $turma->escola_id = $_POST['escola_id'];
             $turma->nome = $_POST['nome'];
-            $turma->telefone = $_POST['telefone'];
-            $turma->email = $_POST['email'];
-            $turma->data_nascimento = $_POST['data_nascimento'];
-            $turma->genero = $_POST['genero'];
+            $turma->ano = $_POST['ano'];
+            $turma->nivel_ensino = $_POST['nivel_ensino'];
+            $turma->serie = $_POST['serie'];
+            $turma->turno = $_POST['turno'];
 
             $this->turmasRepository->update($turma);
 
