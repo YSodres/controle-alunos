@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Atualização de Alunos</title>
+  <title>Atualização de Turmas</title>
   <link href="/assets/css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -18,19 +18,19 @@
 
     <main id="main" class="main">
         <section class="container mt-4">
-            <h1 class="text-center mb-4 fw-bold">Atualização de Alunos</h1>
+            <h1 class="text-center mb-4 fw-bold">Atualização de Turmas</h1>
 
             <div class="d-flex .flex-colum">
                 <form method="post">
                     <div>
-                        <label for="id" class="form-label fw-bold">Selecione um Aluno:</label>
+                        <label for="id" class="form-label fw-bold">Selecione uma Turma:</label>
                         <select class="form-select" name="id" id="id" required>
                             <option value="" selected disabled>-</option>
-                            <?php foreach ($alunos as $alunoOption): ?>
+                            <?php foreach ($turmas as $turmaOption): ?>
                                 <option 
-                                    value="<?= $alunoOption->id ?>"
+                                    value="<?= $turmaOption->id ?>"
                                 >
-                                    <?= $alunoOption->nome ?>
+                                    <?= $turmaOption->id ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
@@ -38,36 +38,54 @@
 
                     <div class="mb-2">
                         <label for="escola_id" class="required form-label fw-bold">Escola:</label>
-                        <input type="number" class="form-control" id="escola_id" name="escola_id" value="<?= $aluno ? $aluno->escola_id : ""; ?>"readonly required>
+                        <input type="number" class="form-control" id="escola_id" name="escola_id" value="<?= $turma ? $turma->escola_id : ""; ?>"readonly required>
                     </div>
 
                     <div class="mb-2">
                         <label for="nome" class="required form-label fw-bold">Nome:</label>
-                        <input type="text" class="form-control" id="nome" name="nome" value="<?= $aluno ? $aluno->nome : ""; ?>"readonly required>
+                        <input type="text" class="form-control" id="nome" name="nome" value="<?= $turma ? $turma->nome : ""; ?>"readonly required>
                     </div>
 
                     <div class="mb-2">
-                        <label for="telefone" class="form-label fw-bold">Telefone:</label>
-                        <input type="tel" class="form-control" id="telefone" name="telefone" value="<?= $aluno ? $aluno->telefone : ""; ?>" readonly>
+                        <label for="ano" class="required form-label fw-bold">Ano:</label>
+                        <input type="number" class="form-control" id="ano" name="ano" value="<?= $turma ? $turma->ano : ""; ?>" readonly required>
                     </div>
 
                     <div class="mb-2">
-                        <label for="email" class="form-label fw-bold">E-mail:</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?= $aluno ? $aluno->email : ""; ?>" readonly>
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="data_nascimento" class="form-label fw-bold">Data de nascimento:</label>
-                        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="<?= $aluno ? $aluno->data_nascimento : ""; ?>" readonly>
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="genero" class="form-label fw-bold">Gênero:</label>
-                        <select class="form-select" id="genero" name="genero" disabled>
-                            <?php foreach (\ControleAlunos\Models\Aluno::GENERO as $key => $value): ?>
+                        <label for="nivel_ensino" class="form-label fw-bold">Nível de ensino:</label>
+                        <select class="form-select" id="nivel_ensino" name="nivel_ensino" disabled>
+                            <?php foreach (\ControleAlunos\Models\Turma::NIVEL_ENSINO as $key => $value): ?>
                                 <option 
                                     value="<?= $value ?>"
-                                    <?= ($aluno && $aluno->genero == $value) ? "selected" : ""; ?>
+                                    <?= ($turma && $turma->nivel_ensino == $value) ? "selected" : ""; ?>
+                                >
+                                    <?= $key ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="serie" class="form-label fw-bold">Série:</label>
+                        <select class="form-select" id="serie" name="serie" disabled>
+                            <?php foreach (\ControleAlunos\Models\Turma::SERIE as $key => $value): ?>
+                                <option 
+                                    value="<?= $value ?>"
+                                    <?= ($turma && $turma->serie == $value) ? "selected" : ""; ?>
+                                >
+                                    <?= $key ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="turno" class="form-label fw-bold">Turno:</label>
+                        <select class="form-select" id="turno" name="turno" disabled>
+                            <?php foreach (\ControleAlunos\Models\Turma::TURNO as $key => $value): ?>
+                                <option 
+                                    value="<?= $value ?>"
+                                    <?= ($turma && $turma->turno == $value) ? "selected" : ""; ?>
                                 >
                                     <?= $key ?>
                                 </option>
@@ -87,21 +105,21 @@
     <footer></footer>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let aluno = document.getElementById("id");
+            let turma = document.getElementById("id");
             let escolaInput = document.getElementById("escola_id");
             let nomeInput = document.getElementById("nome");
-            let telefoneInput = document.getElementById("telefone");
-            let emailInput = document.getElementById("email");
-            let dataNascimentoInput = document.getElementById("data_nascimento");
-            let generoSelect = document.getElementById("genero");
+            let anoInput = document.getElementById("ano");
+            let nivelEnsinoSelect = document.getElementById("nivel_ensino");
+            let serieSelect = document.getElementById("serie");
+            let turnoSelect = document.getElementById("turno");
             let confirmarButton = document.getElementById("confirmar");
             let excluirButton = document.getElementById("excluir");
 
-            aluno.addEventListener("change", function () {
-                let selectedOption = aluno.options[aluno.selectedIndex];
+            turma.addEventListener("change", function () {
+                let selectedOption = turma.options[turma.selectedIndex];
 
                 if (selectedOption.value !== "") {
-                    fetch("obter-dados-aluno?id=" + selectedOption.value, {
+                    fetch("obter-dados-turma?id=" + selectedOption.value, {
                         method: "GET",
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded"
@@ -109,24 +127,24 @@
                     })
                     .then(response => {
                         if (!response.ok) {
-                            throw new Error("Erro na requisição: " + response.generoText);
+                            throw new Error("Erro na requisição: " + response.turnoText);
                         }
                         return response.json();
                     })
-                    .then(dadosaluno => {
-                        escolaInput.value = dadosaluno.escola_id;
-                        nomeInput.value = dadosaluno.nome;
-                        telefoneInput.value = dadosaluno.telefone;
-                        emailInput.value = dadosaluno.email;
-                        dataNascimentoInput.value = dadosaluno.data_nascimento;
-                        generoSelect.value = dadosaluno.genero;
+                    .then(dadosturma => {
+                        escolaInput.value = dadosturma.escola_id;
+                        nomeInput.value = dadosturma.nome;
+                        anoInput.value = dadosturma.ano;
+                        nivelEnsinoSelect.value = dadosturma.nivel_ensino;
+                        serieSelect.value = dadosturma.serie;
+                        turnoSelect.value = dadosturma.turno;
 
                         escolaInput.removeAttribute("readonly");
                         nomeInput.removeAttribute("readonly");
-                        telefoneInput.removeAttribute("readonly");
-                        emailInput.removeAttribute("readonly");
-                        dataNascimentoInput.removeAttribute("readonly");
-                        generoSelect.removeAttribute("disabled");
+                        anoInput.removeAttribute("readonly");
+                        nivelEnsinoSelect.removeAttribute("disabled");
+                        serieSelect.removeAttribute("disabled");
+                        turnoSelect.removeAttribute("disabled");
                         confirmarButton.removeAttribute("disabled");
                         excluirButton.removeAttribute("disabled");
                     })
@@ -148,9 +166,9 @@
                     cancelButtonText: "Cancelar"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        let selectedOption = aluno.options[aluno.selectedIndex].value;
+                        let selectedOption = turma.options[turma.selectedIndex].value;
                         
-                        fetch("excluir-aluno?id=" + selectedOption, {
+                        fetch("excluir-turma?id=" + selectedOption, {
                             method: "DELETE",
                             headers: {
                                 "Content-Type": "application/x-www-form-urlencoded"
@@ -158,7 +176,7 @@
                         })
                         .then(response => {
                             if (!response.ok) {
-                                throw new Error("Erro na requisição: " + response.generoText);
+                                throw new Error("Erro na requisição: " + response.turnoText);
                             }
                             return response.json();
                         })
@@ -166,15 +184,15 @@
                             if (data.success) {
                                 Swal.fire({
                                     title: "Excluído!",
-                                    text: "O aluno foi excluído.",
+                                    text: "A turma foi excluída.",
                                     icon: "success"
                                 }).then(() => {
-                                    window.location.href = "listar-alunos";
+                                    window.location.href = "listar-turmas";
                                 });
                             } else {
                                 Swal.fire({
                                     title: "Erro!",
-                                    text: "Erro ao excluir aluno: " + data.message,
+                                    text: "Erro ao excluir turma: " + data.message,
                                     icon: "error"
                                 });
                             }

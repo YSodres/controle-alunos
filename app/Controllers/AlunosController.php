@@ -93,7 +93,7 @@ class AlunosController extends AbstractController
         if ($aluno) {
             $this->renderJson($aluno);
         } else {
-            $this->renderJson(['error' => 'aluno não encontrada']);
+            $this->renderJson(['error' => 'aluno não encontrado']);
         }
     }
 }
