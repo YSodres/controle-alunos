@@ -80,7 +80,7 @@ class AlunosController extends AbstractController
             $this->alunosRepository->delete($_GET['id']);
             $response['success'] = true;
         } else {
-            $response['message'] = 'ID da aluno não fornecido.';
+            $response['message'] = 'ID do aluno não fornecido.';
         }
 
         $this->renderJson($response);
