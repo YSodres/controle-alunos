@@ -2,8 +2,9 @@
 
 namespace ControleAlunos\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use ControleAlunos\Models\Model;
 
 class Turma extends Model
 {
+    
 }
