@@ -113,39 +113,58 @@
             });
 
             excluirButton.addEventListener("click", function () {
-                let confirmacao = confirm("Tem certeza que deseja excluir o cadastro da escola?");
-                
-                if (confirmacao) {
-                    let selectedOption = escola.options[escola.selectedIndex].value;
-                    
-                    fetch("excluir-escola?id=" + selectedOption, {
-                        method: "DELETE",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                    })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Erro na requisição: " + response.statusText);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.success) {
-                            alert("Escola excluída com sucesso");
-                            window.location.href = "listar-escolas";
-                        } else {
-                            alert("Erro ao excluir escola: " + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Erro na requisição:", error);
-                    });
-                }
+                Swal.fire({
+                    title: "Tem certeza?",
+                    text: "Você não poderá reverter isso!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sim, excluir!",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let selectedOption = escola.options[escola.selectedIndex].value;
+
+                        fetch("excluir-escola?id=" + selectedOption, {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Erro na requisição: " + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: "Excluído!",
+                                    text: "Sua escola foi excluída.",
+                                    icon: "success"
+                                }).then(() => {
+                                    window.location.href = "listar-escolas";
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Erro!",
+                                    text: "Erro ao excluir escola: " + data.message,
+                                    icon: "error"
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Erro na requisição:", error);
+                        });
+                    }
+                });
             });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
