@@ -15,7 +15,7 @@ class Router
 
     public function hasRoute()
     {
-        $pathInfo = $_SERVER['PATH_INFO'] ?? '/';
+        $pathInfo = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
         $httpMethod = $_SERVER['REQUEST_METHOD'];
 
         $route = "$httpMethod|$pathInfo";
@@ -27,7 +27,7 @@ class Router
         $nameController = $controllerData[0];
         $method = $controllerData[1];
 
-        if (self::hasRoute() == false) {
+        if ($this->hasRoute() == false) {
             return $this->pageNotFound();
         };
 
