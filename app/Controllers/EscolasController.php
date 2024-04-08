@@ -20,71 +20,74 @@ class EscolasController extends AbstractController
     public function index()
     {
         $escolas = $this->escolasRepository->all();
-        require_once __DIR__ . "/../../views/listagem-escolas.php";
+
+        $this->render('listagem-escolas', ['escolas' => $escolas]);
     }
 
     public function create()
     {
-        require_once __DIR__ . "/../../views/registro-escolas.php";
+        $this->render('cadastro-escolas');
     }
 
     public function edit()
     {
-        $escolas = $this->escolasRepository->all();
-        $escola = null;
+        $params = [
+            'escolas' => $escolas = $this->escolasRepository->all(),
+            'escola' => null
+        ];
 
-        require_once __DIR__ . "/../../views/atualizacao-escolas.php";
+        $this->render('atualizacao-escolas', $params);
     }
 
     public function store()
     {
         $escola = new Escola();
-        $escola->nome = $_POST["nome"];
-        $escola->endereco = $_POST["endereco"];
-        $escola->status = $_POST["situacao"];
+        $escola->nome = $_POST['nome'];
+        $escola->endereco = $_POST['endereco'];
+        $escola->status = $_POST['status'];
 
         $this->escolasRepository->store($escola);
 
-        header("Location: listagem-escolas");
-        exit();
+        $this->redirectTo('listar-escolas');
     }
 
     public function update()
     {
-        if (isset($_POST["confirmar"]) && (!empty($_POST["escola_id"]))) {
+        if (isset($_POST['confirmar']) && (!empty($_POST['id']))) {
             $escola = new Escola();
-            $escola->id = $_POST["escola_id"];
-            $escola->nome = $_POST["nome"];
-            $escola->endereco = $_POST["endereco"];
-            $escola->status = $_POST["situacao"];
+            $escola->id = $_POST['id'];
+            $escola->nome = $_POST['nome'];
+            $escola->endereco = $_POST['endereco'];
+            $escola->status = $_POST['status'];
 
             $this->escolasRepository->update($escola);
 
-            header("Location: listagem-escolas");
-            exit();
-        }
-
-        if (isset($_POST["excluir"]) && (!empty($_POST["escola_id"]))) {
-            $this->delete();
+            $this->redirectTo('listar-escolas');
         }
     }
 
-    private function delete()
+    public function delete()
     {
-        $this->escolasRepository->delete($_POST["escola_id"]);
+        $response = ['success' => false];
 
-        header("Location: listagem-escolas");
-        exit();
+        if (!empty($_GET['id'])) {
+            $this->escolasRepository->delete($_GET['id']);
+            $response['success'] = true;
+        } else {
+            $response['message'] = 'ID da escola não fornecido.';
+        }
+
+        $this->renderJson($response);
     }
 
     public function show()
     {
-        $escola = $this->escolasRepository->find($_GET["escola_id"]);
+        $escola = $this->escolasRepository->find($_GET['id']);
 
         if ($escola) {
-            echo json_encode($escola);
+            $this->renderJson($escola);
         } else {
-            echo json_encode(["error" => "Escola não encontrada"]);
+            $this->renderJson(['error' => 'Escola não encontrada']);
         }
     }
 }

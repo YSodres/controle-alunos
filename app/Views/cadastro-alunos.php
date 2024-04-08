@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Registro de Escolas</title>
+    <title>Cadastro de Alunos</title>
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -18,25 +18,40 @@
 
     <main id="main" class="main">
         <section class="container mt-4">
-            <h1 class="text-center mb-4 fw-bold">Registro de Escolas</h1>
+            <h1 class="text-center mb-4 fw-bold">Cadastro de Alunos</h1>
 
             <div class="d-flex .flex-colum">
                 <form method="post">
+                    <div class="mb-2">
+                        <label for="escola_id" class="form-label fw-bold">ID da Escola:</label>
+                        <input type="number" class="form-control" id="escola_id" name="escola_id">
+                    </div>
+
                     <div class="mb-2">
                         <label for="nome" class="required form-label fw-bold">Nome:</label>
                         <input type="text" class="form-control" id="nome" name="nome" required>
                     </div>
 
                     <div class="mb-2">
-                        <label for="endereco" class="form-label fw-bold">Endereço:</label>
-                        <input type="text" class="form-control" id="endereco" name="endereco" >
+                        <label for="telefone" class="form-label fw-bold">Telefone:</label>
+                        <input type="tel" class="form-control" id="telefone" name="telefone">
                     </div>
 
                     <div class="mb-2">
-                        <label for="situacao" class="form-label fw-bold">Situação:</label>
-                        <select class="form-select" id="situacao" name="situacao" required>
-                            <option value="1">Ativo</option>
-                            <option value="2">Inativo</option>
+                        <label for="email" class="required form-label fw-bold">E-mail:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="data_nascimento" class="form-label fw-bold">Data de Nascimento:</label>
+                        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="genero" class="form-label fw-bold">Gênero:</label>
+                        <select class="form-select" id="genero" name="genero">
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
                         </select>
                     </div>
 

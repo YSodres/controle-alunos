@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Escola extends Model
 {
     const STATUS = [
-        "ativo" => 1,
-        "inativo" => 2
+        "Ativo" => 1,
+        "Inativo" => 2
     ];
 }

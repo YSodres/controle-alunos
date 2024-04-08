@@ -22,4 +22,23 @@ abstract class AbstractController
     {
 
     }
+
+    protected function render($view, $params = [])
+    {
+        extract($params);
+        require_once APP_PATH . "/Views/$view.php";
+    }
+
+    protected function redirectTo($pagina)
+    {
+        header("Location: $pagina");
+        exit();
+    }
+
+    protected function renderJson($response)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit();
+    }
 }
