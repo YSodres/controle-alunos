@@ -14,10 +14,5 @@ require_once CONFIG_PATH . '/database.php';
 
 require_once CONFIG_PATH . '/routes.php';
 
-$pathInfo = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
-$httpMethod = $_SERVER['REQUEST_METHOD'];
-
-$controllerData = $routes["$httpMethod|$pathInfo"];
-
 $router = new Router($routes, ['database' => $database]);
-$router->run($controllerData);
+$router->run();

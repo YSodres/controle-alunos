@@ -13,23 +13,25 @@ class Router
         $this->dependencies = $dependecies;
     }
 
-    public function hasRoute()
+    public function hasRoute($pathInfo, $httpMethod)
     {
-        $pathInfo = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
-        $httpMethod = $_SERVER['REQUEST_METHOD'];
-
         $route = "$httpMethod|$pathInfo";
         return array_key_exists($route, $this->routes);
     }
 
-    public function run($controllerData)
+    public function run()
     {
-        $nameController = $controllerData[0];
-        $method = $controllerData[1];
+        $pathInfo = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+        $httpMethod = $_SERVER['REQUEST_METHOD'];
 
-        if ($this->hasRoute() == false) {
+        if ($this->hasRoute($pathInfo, $httpMethod) == false) {
             return $this->pageNotFound();
         };
+
+        $controllerData = $this->routes["$httpMethod|$pathInfo"];
+
+        $nameController = $controllerData[0];
+        $method = $controllerData[1];
 
         if (class_exists($nameController)) {
             $controller = new $nameController($this->dependencies['database']);
