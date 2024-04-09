@@ -16,11 +16,12 @@ CREATE TABLE Escolas (
 
 CREATE TABLE Turmas (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
     ano INT NOT NULL,
-    nivel_ensino VARCHAR(20) NOT NULL,
-    serie VARCHAR(20) NOT NULL,
-    turno VARCHAR(20) NOT NULL,
-    escola_id INT,
+    nivel_ensino INT NOT NULL,
+    serie INT NOT NULL,
+    turno INT NOT NULL,
+    escola_id INT NOT NULL,
     FOREIGN KEY (escola_id) REFERENCES Escolas(id)
 );
 

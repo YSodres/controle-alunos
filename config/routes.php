@@ -2,6 +2,7 @@
 
 use ControleAlunos\Controllers\EscolasController;
 use ControleAlunos\Controllers\AlunosController;
+use ControleAlunos\Controllers\TurmasController;
 
 $routes = [
     'GET|/' => [EscolasController::class, 'index'],
@@ -20,4 +21,12 @@ $routes = [
     'POST|/atualizar-aluno' => [AlunosController::class, 'update'],
     'GET|/obter-dados-aluno' => [AlunosController::class, 'show'],
     'DELETE|/excluir-aluno' => [AlunosController::class, 'delete'],
+
+    'GET|/cadastrar-turma' => [TurmasController::class, 'create'],
+    'POST|/cadastrar-turma' => [TurmasController::class, 'store'],
+    'GET|/listar-turmas' => [TurmasController::class, 'index'],
+    'GET|/atualizar-turma' => [TurmasController::class, 'edit'],
+    'POST|/atualizar-turma' => [TurmasController::class, 'update'],
+    'GET|/obter-dados-turma' => [TurmasController::class, 'show'],
+    'DELETE|/excluir-turma' => [TurmasController::class, 'delete']
 ];

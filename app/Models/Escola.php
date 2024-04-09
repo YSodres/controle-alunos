@@ -2,7 +2,7 @@
 
 namespace ControleAlunos\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use ControleAlunos\Models\Model;
 
 class Escola extends Model
 {
