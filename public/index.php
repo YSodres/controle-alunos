@@ -14,5 +14,5 @@ require_once CONFIG_PATH . '/database.php';
 
 require_once CONFIG_PATH . '/routes.php';
 
-$router = new Router($routes, $database);
+$router = new Router($routes, $dependencies);
 $router->run();
