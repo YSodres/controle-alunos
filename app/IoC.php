@@ -13,17 +13,3 @@ class IoC {
 		return $this->registry[$name]();
 	}
 }
-
-
-/*
-$c = new IoC;
-$c->mailer = function() {
-  $m = new Mailer;
-  // create new instance of mailer 
-  // set creds, etc. 
-  
-  return $m;
-};
-// Fetch, boy 
-$mailer = $c->mailer; // mailer instance
-*/
