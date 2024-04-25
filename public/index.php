@@ -11,7 +11,7 @@ require_once ROOT_PATH . '/vendor/autoload.php';
 use ControleAlunos\Router;
 use ControleAlunos\Container;
 
-$container = new Container;
+$container = new Container();
 
 require_once CONFIG_PATH . '/database.php';
 
