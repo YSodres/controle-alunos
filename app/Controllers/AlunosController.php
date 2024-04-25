@@ -14,7 +14,7 @@ class AlunosController extends AbstractController
     
     protected function beforeAction()
     {
-        $this->alunosRepository = new AlunosRepository($this->dependecies);
+        $this->alunosRepository = new AlunosRepository($this->container);
     }
 
     public function index()

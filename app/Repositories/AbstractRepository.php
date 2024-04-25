@@ -10,12 +10,12 @@ abstract class AbstractRepository
 {
     protected $pdo;
 
-    public function __construct(Container $dependecies)
+    public function __construct(Container $container)
     {   
-        if (!$dependecies->pdo instanceof PDO) {
+        if (!$container->pdo instanceof PDO) {
             throw new Exception("Objeto PDO não encontrado");
         }
 
-        $this->pdo = $dependecies->pdo;
+        $this->pdo = $container->pdo;
     }
 }

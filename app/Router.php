@@ -5,12 +5,12 @@ namespace ControleAlunos;
 class Router
 {
     private $routes;
-    private $dependencies;
+    private $container;
 
-    public function __construct(array $routes, Container $dependecies)
+    public function __construct(array $routes, Container $container)
     {
         $this->routes = $routes;
-        $this->dependencies = $dependecies;
+        $this->container = $container;
     }
 
     public function hasRoute($pathInfo, $httpMethod)
@@ -34,7 +34,7 @@ class Router
         $method = $controllerData[1];
 
         if (class_exists($nameController)) {
-            $controller = new $nameController($this->dependencies);
+            $controller = new $nameController($this->container);
             if (method_exists($controller, $method)) {
                 $controller->$method();
             } else {

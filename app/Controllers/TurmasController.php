@@ -14,7 +14,7 @@ class TurmasController extends AbstractController
     
     protected function beforeAction()
     {
-        $this->turmasRepository = new TurmasRepository($this->dependecies);
+        $this->turmasRepository = new TurmasRepository($this->container);
     }
 
     public function index()

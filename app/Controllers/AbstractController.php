@@ -6,11 +6,11 @@ use ControleAlunos\Container;
 
 abstract class AbstractController
 {
-    protected $dependecies;
+    protected $container;
 
-    public function __construct(Container $dependecies)
+    public function __construct(Container $container)
     {
-        $this->dependecies = $dependecies;
+        $this->container = $container;
         $this->beforeAction();
     }
 
