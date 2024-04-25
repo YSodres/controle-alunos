@@ -7,7 +7,7 @@ class Router
     private $routes;
     private $dependencies;
 
-    public function __construct(array $routes, IoC $dependecies)
+    public function __construct(array $routes, Container $dependecies)
     {
         $this->routes = $routes;
         $this->dependencies = $dependecies;

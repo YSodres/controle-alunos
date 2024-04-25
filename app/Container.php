@@ -2,7 +2,7 @@
 
 namespace ControleAlunos;
 
-class IoC {
+class Container {
 	protected $registry = array();
 	public function __set($name, $resolver)
 	{
