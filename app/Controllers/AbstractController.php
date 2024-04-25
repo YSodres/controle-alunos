@@ -2,12 +2,15 @@
 
 namespace ControleAlunos\Controllers;
 
-use PDO;
+use ControleAlunos\Container;
 
 abstract class AbstractController
 {
-    public function __construct(public PDO $pdo)
+    protected $dependecies;
+
+    public function __construct(Container $dependecies)
     {
+        $this->dependecies = $dependecies;
         $this->beforeAction();
     }
 

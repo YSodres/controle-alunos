@@ -14,7 +14,7 @@ class EscolasController extends AbstractController
 
     protected function beforeAction()
     {
-        $this->escolasRepository = new EscolasRepository($this->pdo);
+        $this->escolasRepository = new EscolasRepository($this->dependecies);
     }
 
     public function index()

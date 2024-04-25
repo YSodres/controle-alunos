@@ -34,7 +34,7 @@ class Router
         $method = $controllerData[1];
 
         if (class_exists($nameController)) {
-            $controller = new $nameController($this->dependencies->pdo);
+            $controller = new $nameController($this->dependencies);
             if (method_exists($controller, $method)) {
                 $controller->$method();
             } else {
