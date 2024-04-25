@@ -7,7 +7,7 @@ class Router
     private $routes;
     private $dependencies;
 
-    public function __construct(array $routes, array $dependecies = [])
+    public function __construct(array $routes, IoC $dependecies)
     {
         $this->routes = $routes;
         $this->dependencies = $dependecies;
@@ -34,7 +34,7 @@ class Router
         $method = $controllerData[1];
 
         if (class_exists($nameController)) {
-            $controller = new $nameController($this->dependencies['database']);
+            $controller = new $nameController($this->dependencies->pdo);
             if (method_exists($controller, $method)) {
                 $controller->$method();
             } else {

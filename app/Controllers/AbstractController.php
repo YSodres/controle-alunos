@@ -6,12 +6,8 @@ use PDO;
 
 abstract class AbstractController
 {
-    public $pdo;
-
-    public function __construct(PDO $pdo)
+    public function __construct(public PDO $pdo)
     {
-        $this->pdo = $pdo;
-
         $this->beforeAction();
     }
 
