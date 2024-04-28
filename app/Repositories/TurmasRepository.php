@@ -13,7 +13,7 @@ class TurmasRepository extends AbstractRepository
     public function all()
     {
         $sql = "SELECT * FROM turmas ORDER BY id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, $this->model);
     }
@@ -22,7 +22,7 @@ class TurmasRepository extends AbstractRepository
     {
         $sql = "INSERT INTO turmas (escola_id, nome, ano, nivel_ensino, serie, turno) 
                 VALUES (:escola_id, :nome, :ano, :nivel_ensino, :serie, :turno)";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":escola_id", $turma->escola_id);
         $stmt->bindValue(":nome", $turma->nome);
         $stmt->bindValue(":ano", $turma->ano);
@@ -36,7 +36,7 @@ class TurmasRepository extends AbstractRepository
     {
         $sql = "UPDATE turmas SET escola_id = :escola_id, nome = :nome, ano = :ano, nivel_ensino = :nivel_ensino,
                 serie = :serie, turno = :turno WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":escola_id", $turma->escola_id);
         $stmt->bindValue(":nome", $turma->nome);
         $stmt->bindValue(":ano", $turma->ano);
@@ -50,7 +50,7 @@ class TurmasRepository extends AbstractRepository
     public function find($id)
     {
         $sql = "SELECT * FROM turmas WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->execute();
 
@@ -60,7 +60,7 @@ class TurmasRepository extends AbstractRepository
     public function delete($id)
     {
         $sql = "DELETE FROM turmas WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->execute();
     }

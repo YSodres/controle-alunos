@@ -13,7 +13,7 @@ class AlunosRepository extends AbstractRepository
     public function all()
     {
         $sql = "SELECT * FROM alunos ORDER BY id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, $this->model);
     }
@@ -22,7 +22,7 @@ class AlunosRepository extends AbstractRepository
     {
         $sql = "INSERT INTO alunos (escola_id, nome, telefone, email, data_nascimento, genero) 
                 VALUES (:escola_id, :nome, :telefone, :email, :data_nascimento, :genero)";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":escola_id", $aluno->escola_id);
         $stmt->bindValue(":nome", $aluno->nome);
         $stmt->bindValue(":telefone", $aluno->telefone);
@@ -36,7 +36,7 @@ class AlunosRepository extends AbstractRepository
     {
         $sql = "UPDATE alunos SET escola_id = :escola_id, nome = :nome, telefone = :telefone,
                 email = :email, data_nascimento = :data_nascimento, genero = :genero WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":escola_id", $aluno->escola_id);
         $stmt->bindValue(":nome", $aluno->nome);
         $stmt->bindValue(":telefone", $aluno->telefone);
@@ -50,7 +50,7 @@ class AlunosRepository extends AbstractRepository
     public function find($id)
     {
         $sql = "SELECT * FROM alunos WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->execute();
 
@@ -60,7 +60,7 @@ class AlunosRepository extends AbstractRepository
     public function delete($id)
     {
         $sql = "DELETE FROM alunos WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->database->prepare($sql);
         $stmt->bindValue(":id", $id);
         $stmt->execute();
     }

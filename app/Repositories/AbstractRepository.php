@@ -8,14 +8,14 @@ use Exception;
 
 abstract class AbstractRepository
 {
-    protected $pdo;
+    protected $database;
 
     public function __construct(Container $container)
     {   
-        if (!$container->pdo instanceof PDO) {
+        if (!$container->database instanceof PDO) {
             throw new Exception("Objeto PDO não encontrado");
         }
 
-        $this->pdo = $container->pdo;
+        $this->database = $container->database;
     }
 }
